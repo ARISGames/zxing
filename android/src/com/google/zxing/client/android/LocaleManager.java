@@ -65,6 +65,7 @@ public final class LocaleManager {
     GOOGLE_COUNTRY_TLD.put("NL", "nl"); // NETHERLANDS
     GOOGLE_COUNTRY_TLD.put("PL", "pl"); // POLAND
     GOOGLE_COUNTRY_TLD.put("PT", "pt"); // PORTUGAL
+    GOOGLE_COUNTRY_TLD.put("RO", "ro"); // ROMANIA    
     GOOGLE_COUNTRY_TLD.put("RU", "ru"); // RUSSIA
     GOOGLE_COUNTRY_TLD.put("SK", "sk"); // SLOVAK REPUBLIC
     GOOGLE_COUNTRY_TLD.put("SI", "si"); // SLOVENIA
@@ -172,7 +173,7 @@ public final class LocaleManager {
   public static String getCountry(Context context) {
     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
     String countryOverride = prefs.getString(PreferencesActivity.KEY_SEARCH_COUNTRY, null);
-    if (countryOverride != null && countryOverride.length() > 0 && !"-".equals(countryOverride)) {
+    if (countryOverride != null && !countryOverride.isEmpty() && !"-".equals(countryOverride)) {
       return countryOverride;
     }
     return getSystemCountry();

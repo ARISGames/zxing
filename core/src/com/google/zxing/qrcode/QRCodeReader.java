@@ -30,6 +30,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.DecoderResult;
 import com.google.zxing.common.DetectorResult;
 import com.google.zxing.qrcode.decoder.Decoder;
+import com.google.zxing.qrcode.decoder.QRCodeDecoderMetaData;
 import com.google.zxing.qrcode.detector.Detector;
 
 import java.util.List;
@@ -76,6 +77,11 @@ public class QRCodeReader implements Reader {
       DetectorResult detectorResult = new Detector(image.getBlackMatrix()).detect(hints);
       decoderResult = decoder.decode(detectorResult.getBits(), hints);
       points = detectorResult.getPoints();
+    }
+
+    // If the code was mirrored: swap the bottom-left and the top-right points.
+    if (decoderResult.getOther() instanceof QRCodeDecoderMetaData) {
+      ((QRCodeDecoderMetaData) decoderResult.getOther()).applyMirroredCorrection(points);
     }
 
     Result result = new Result(decoderResult.getText(), decoderResult.getRawBytes(), points, BarcodeFormat.QR_CODE);
@@ -149,10 +155,18 @@ public class QRCodeReader implements Reader {
     // But careful that this does not sample off the edge
     int nudgedTooFarRight = left + (int) ((matrixWidth - 1) * moduleSize) - (right - 1);
     if (nudgedTooFarRight > 0) {
+      if (nudgedTooFarRight > nudge) {
+        // Neither way fits; abort
+        throw NotFoundException.getNotFoundInstance();
+      }
       left -= nudgedTooFarRight;
     }
     int nudgedTooFarDown = top + (int) ((matrixHeight - 1) * moduleSize) - (bottom - 1);
     if (nudgedTooFarDown > 0) {
+      if (nudgedTooFarDown > nudge) {
+        // Neither way fits; abort
+        throw NotFoundException.getNotFoundInstance();
+      }
       top -= nudgedTooFarDown;
     }
 

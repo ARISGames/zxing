@@ -116,7 +116,7 @@ final class DecodeHintManager {
 
   static Map<DecodeHintType,?> parseDecodeHints(Uri inputUri) {
     String query = inputUri.getEncodedQuery();
-    if (query == null || query.length() == 0) {
+    if (query == null || query.isEmpty()) {
       return null;
     }
 
@@ -157,7 +157,7 @@ final class DecodeHintManager {
       if (hintType.getValueType().equals(Boolean.class)) {
         // A boolean hint: a few values for false, everything else is true.
         // An empty parameter is simply a flag-style parameter, assuming true
-        if (parameterText.length() == 0) {
+        if (parameterText.isEmpty()) {
           hints.put(hintType, Boolean.TRUE);
         } else if ("0".equals(parameterText) || 
                    "false".equalsIgnoreCase(parameterText) || 
@@ -172,7 +172,7 @@ final class DecodeHintManager {
       if (hintType.getValueType().equals(int[].class)) {
         // An integer array. Used to specify valid lengths.
         // Strip a trailing comma as in Java style array initialisers.
-        if (parameterText.length() > 0 && parameterText.charAt(parameterText.length() - 1) == ',') {
+        if (!parameterText.isEmpty() && parameterText.charAt(parameterText.length() - 1) == ',') {
           parameterText = parameterText.substring(0, parameterText.length() - 1);
         }
         String[] values = COMMA.split(parameterText);

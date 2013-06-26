@@ -53,14 +53,16 @@ public abstract class SupplementalInfoRetriever extends AsyncTask<Object,Object,
       taskExec.execute(new URIResultInfoRetriever(textView, (URIParsedResult) result, historyManager, context));
       taskExec.execute(new TitleRetriever(textView, (URIParsedResult) result, historyManager));
     } else if (result instanceof ProductParsedResult) {
-      String productID = ((ProductParsedResult) result).getProductID();
+      ProductParsedResult productParsedResult = (ProductParsedResult) result;
+      String productID = productParsedResult.getProductID();
+      String normalizedProductID = productParsedResult.getNormalizedProductID();
       taskExec.execute(new ProductResultInfoRetriever(textView, productID, historyManager, context));
       switch (productID.length()) {
         case 12:
-          taskExec.execute(new AmazonInfoRetriever(textView, "UPC", productID, historyManager, context));      
+          taskExec.execute(new AmazonInfoRetriever(textView, "UPC", normalizedProductID, historyManager, context));      
           break;
         case 13:
-          taskExec.execute(new AmazonInfoRetriever(textView, "EAN", productID, historyManager, context)); 
+          taskExec.execute(new AmazonInfoRetriever(textView, "EAN", normalizedProductID, historyManager, context)); 
           break;
       }
     } else if (result instanceof ISBNParsedResult) {
@@ -154,7 +156,7 @@ public abstract class SupplementalInfoRetriever extends AsyncTask<Object,Object,
   }
   
   static void maybeAddText(String text, Collection<String> texts) {
-    if (text != null && text.length() > 0) {
+    if (text != null && !text.isEmpty()) {
       texts.add(text);
     }
   }
