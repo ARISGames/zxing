@@ -1705,6 +1705,7 @@
 				PRODUCT_NAME = ZXingWidget;
 				SEPARATE_STRIP = NO;
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s i386";
 			};
 			name = Debug;
 		};
@@ -1721,6 +1722,7 @@
 				INSTALL_PATH = /usr/local/lib;
 				PRODUCT_NAME = ZXingWidget;
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s i386";
 			};
 			name = Release;
 		};
