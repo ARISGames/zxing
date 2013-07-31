@@ -19,15 +19,16 @@
 @protocol CancelDelegate;
 
 @interface OverlayView : UIView {
-	NSMutableArray *_points;
-	UIButton *cancelButton;
+  NSMutableArray *_points;
+  UIButton *cancelButton;
   UILabel *instructionsLabel;
-	id<CancelDelegate> delegate;
-	BOOL oneDMode;
+  id<CancelDelegate> delegate;
+  BOOL oneDMode;
   BOOL cancelEnabled;
   CGRect cropRect;
   NSString *displayedMessage;
   NSString *cancelButtonTitle;
+    UIImageView *fadedQR;
 }
 
 @property (nonatomic, retain) NSMutableArray*  points;
@@ -37,9 +38,11 @@
 @property (nonatomic, copy) NSString *displayedMessage;
 @property (nonatomic, retain) NSString *cancelButtonTitle;
 @property (nonatomic, assign) BOOL cancelEnabled;
+@property (nonatomic, retain) UIImageView *fadedQR;
 
-- (id)initWithFrame:(CGRect)theFrame cancelEnabled:(BOOL)isCancelEnabled oneDMode:(BOOL)isOneDModeEnabled showLicense:(BOOL)shouldShowLicense;
-- (id)initWithFrame:(CGRect)theFrame cancelEnabled:(BOOL)isCancelEnabled oneDMode:(BOOL)isOneDModeEnabled;
+- (id) initWithFrame:(CGRect)theFrame cancelEnabled:(BOOL)isCancelEnabled oneDMode:(BOOL)isOneDModeEnabled showLicense:(BOOL)showLicenseButton withPrompt:(NSString *)p;
+- (id) initWithFrame:(CGRect)theFrame cancelEnabled:(BOOL)isCancelEnabled oneDMode:(BOOL)isOneDModeEnabled showLicense:(BOOL)shouldShowLicense;
+- (id) initWithFrame:(CGRect)theFrame cancelEnabled:(BOOL)isCancelEnabled oneDMode:(BOOL)isOneDModeEnabled;
 
 - (void)setPoint:(CGPoint)point;
 
