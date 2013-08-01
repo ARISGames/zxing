@@ -149,12 +149,13 @@
     CGContextSetFillColor(c, clearBlack);
     CGFloat white[4] = {0.0f, 0.0f, 0.0f, 0.6f};
     CGContextSetStrokeColor(c,white);
-    [[UIColor whiteColor] setFill];
     
     [self drawRect:CGRectMake(0, 0, self.frame.size.width, cropRect.origin.y) inContext:c];
     [self drawRect:CGRectMake(0, cropRect.origin.y+cropRect.size.height, self.frame.size.width, self.frame.size.height-(cropRect.origin.y+cropRect.size.height)) inContext:c];
     
     CGContextSaveGState(c);
+
+    [[UIColor whiteColor] setFill];
 
     UIFont *font = [UIFont systemFontOfSize:18];
     CGSize constraint = CGSizeMake(rect.size.width  - 2 * kTextMargin, cropRect.origin.y);
