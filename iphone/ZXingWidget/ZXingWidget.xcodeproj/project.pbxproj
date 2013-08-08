@@ -1400,7 +1400,7 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "ZXingWidget" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1733,6 +1733,7 @@
 					armv7,
 					armv7s,
 				);
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
@@ -1761,6 +1762,7 @@
 					armv7,
 					armv7s,
 				);
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
 				GCC_VERSION = "";

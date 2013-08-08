@@ -560,7 +560,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 }
 
 #pragma mark orientation
-- (NSInteger) supportedInterfaceOrientations
+- (NSUInteger) supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
 }
