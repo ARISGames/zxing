@@ -58,7 +58,7 @@
         CGFloat cropSize = self.frame.size.width-75;
         cropRect = CGRectMake(0, self.frame.size.height/2-cropSize/2,self.frame.size.width,cropSize);
         CGFloat qrSize = self.frame.size.width-150;
-        fadedQR = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"qr_nowhite.png"]];
+        fadedQR = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"qr.png"]];
         fadedQR.alpha = 0.4;
         fadedQR.frame = CGRectMake(self.frame.size.width/2-qrSize/2,self.frame.size.height/2-qrSize/2,qrSize,qrSize);
         [self addSubview:fadedQR];
