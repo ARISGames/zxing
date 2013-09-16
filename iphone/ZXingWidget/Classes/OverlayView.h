@@ -20,14 +20,11 @@
 
 @interface OverlayView : UIView {
   NSMutableArray *_points;
-  UIButton *cancelButton;
   UILabel *instructionsLabel;
   id<CancelDelegate> delegate;
   BOOL oneDMode;
-  BOOL cancelEnabled;
   CGRect cropRect;
   NSString *displayedMessage;
-  NSString *cancelButtonTitle;
     UIImageView *fadedQR;
 }
 
@@ -36,8 +33,6 @@
 @property (nonatomic, assign) BOOL oneDMode;
 @property (nonatomic, assign) CGRect cropRect;
 @property (nonatomic, copy) NSString *displayedMessage;
-@property (nonatomic, retain) NSString *cancelButtonTitle;
-@property (nonatomic, assign) BOOL cancelEnabled;
 @property (nonatomic, retain) UIImageView *fadedQR;
 
 - (id) initWithFrame:(CGRect)theFrame cancelEnabled:(BOOL)isCancelEnabled oneDMode:(BOOL)isOneDModeEnabled showLicense:(BOOL)showLicenseButton withPrompt:(NSString *)p;

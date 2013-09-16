@@ -19,7 +19,6 @@
 #import "OverlayView.h"
 
 @interface OverlayView()
-@property (nonatomic,assign) UIButton *cancelButton;
 @property (nonatomic,assign) UIButton *licenseButton;
 @property (nonatomic,retain) UILabel *instructionsLabel;
 @end
@@ -28,13 +27,10 @@
 
 @synthesize delegate, oneDMode;
 @synthesize points = _points;
-@synthesize cancelButton;
 @synthesize licenseButton;
 @synthesize cropRect;
 @synthesize instructionsLabel;
 @synthesize displayedMessage;
-@synthesize cancelButtonTitle;
-@synthesize cancelEnabled;
 @synthesize fadedQR;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,7 +48,6 @@
     if(self = [super initWithFrame:theFrame])
     {
         self.oneDMode = NO;
-        self.cancelEnabled = YES;
         self.displayedMessage = p;
         
         CGFloat cropSize = self.frame.size.width-75;
@@ -64,16 +59,6 @@
         [self addSubview:fadedQR];
         
         self.backgroundColor = [UIColor clearColor];
-
-        self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        if([self.cancelButtonTitle length] > 0)
-            [cancelButton setTitle:self.cancelButtonTitle forState:UIControlStateNormal];
-        else
-            [cancelButton setTitle:NSLocalizedStringWithDefaultValue(@"OverlayView cancel button title", nil, [NSBundle mainBundle], @"Cancel", @"Cancel") forState:UIControlStateNormal];
-        self.cancelButton.backgroundColor = [UIColor colorWithRed:(214.0/255.0) green:(218.0/255.0)  blue:(211.0/255.0) alpha:1.0];
-        [self.cancelButton setTitleColor:[UIColor colorWithRed:(0.0/255.0) green:(101.0/255.0) blue:(149.0/255.0) alpha:1.0] forState:UIControlStateNormal];
-        [cancelButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:cancelButton];
     }
     return self;
 }
@@ -88,7 +73,6 @@
     [_points release];
     [instructionsLabel release];
     [displayedMessage release];
-    [cancelButtonTitle release],
     [fadedQR release];
     [super dealloc];
 }
@@ -203,13 +187,6 @@
     if(_points.count > 3) [_points removeObjectAtIndex:0];
     [_points addObject:[NSValue valueWithCGPoint:point]];
     [self setNeedsDisplay];
-}
-
-
-- (void) layoutSubviews
-{
-    [super layoutSubviews];
-    if(cancelButton) self.cancelButton.frame = CGRectMake(-10,self.frame.size.height-46,self.frame.size.width+20,50);
 }
 
 @end
