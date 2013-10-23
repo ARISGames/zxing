@@ -390,7 +390,7 @@ static bool isIPad() {
 }
 
 #if HAS_AVFF
-#define DECODE_LIMIT_TIME 0.2f
+#define DECODE_LIMIT_TIME 0.1f
 - (void)captureOutput:(AVCaptureOutput *)captureOutput 
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer 
        fromConnection:(AVCaptureConnection *)connection 
