@@ -20,7 +20,6 @@
 
 @interface OverlayView : UIView {
   NSMutableArray *_points;
-  UILabel *instructionsLabel;
   id<CancelDelegate> delegate;
   BOOL oneDMode;
   CGRect cropRect;

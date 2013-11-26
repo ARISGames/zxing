@@ -19,28 +19,24 @@
 #import "OverlayView.h"
 
 @interface OverlayView()
-@property (nonatomic,assign) UIButton *licenseButton;
-@property (nonatomic,retain) UILabel *instructionsLabel;
 @end
 
 @implementation OverlayView
 
 @synthesize delegate, oneDMode;
 @synthesize points = _points;
-@synthesize licenseButton;
 @synthesize cropRect;
-@synthesize instructionsLabel;
 @synthesize displayedMessage;
 @synthesize fadedQR;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (id) initWithFrame:(CGRect)theFrame cancelEnabled:(BOOL)isCancelEnabled oneDMode:(BOOL)isOneDModeEnabled {
-    return [self initWithFrame:theFrame cancelEnabled:isCancelEnabled oneDMode:isOneDModeEnabled showLicense:YES];
+    return [self initWithFrame:theFrame cancelEnabled:isCancelEnabled oneDMode:isOneDModeEnabled showLicense:NO];
 }
 
 - (id) initWithFrame:(CGRect)theFrame cancelEnabled:(BOOL)isCancelEnabled oneDMode:(BOOL)isOneDModeEnabled showLicense:(BOOL)showLicenseButton {
-    return [self initWithFrame:theFrame cancelEnabled:isCancelEnabled oneDMode:isOneDModeEnabled showLicense:YES withPrompt:@""];
+    return [self initWithFrame:theFrame cancelEnabled:isCancelEnabled oneDMode:isOneDModeEnabled showLicense:NO withPrompt:@""];
 }
 
 - (id) initWithFrame:(CGRect)theFrame cancelEnabled:(BOOL)isCancelEnabled oneDMode:(BOOL)isOneDModeEnabled showLicense:(BOOL)showLicenseButton withPrompt:(NSString *)p
@@ -71,7 +67,6 @@
 
 - (void) dealloc {
     [_points release];
-    [instructionsLabel release];
     [displayedMessage release];
     [fadedQR release];
     [super dealloc];
