@@ -58,35 +58,31 @@
 @synthesize readers;
 
 
-- (id)initWithDelegate:(id<ZXingDelegate>)scanDelegate showCancel:(BOOL)shouldShowCancel OneDMode:(BOOL)shouldUseoOneDMode {
+- (id)initWithDelegate:(id<ZXingDelegate>)scanDelegate oneDMode:(BOOL)shouldUseoOneDMode {
     
-    return [self initWithDelegate:scanDelegate showCancel:shouldShowCancel OneDMode:shouldUseoOneDMode showLicense:NO];
+    return [self initWithDelegate:scanDelegate oneDMode:shouldUseoOneDMode showLicense:NO];
 }
 
-- (id)initWithDelegate:(id<ZXingDelegate>)scanDelegate showCancel:(BOOL)shouldShowCancel OneDMode:(BOOL)shouldUseoOneDMode showLicense:(BOOL)shouldShowLicense
+- (id)initWithDelegate:(id<ZXingDelegate>)scanDelegate oneDMode:(BOOL)shouldUseoOneDMode showLicense:(BOOL)shouldShowLicense
 {
-    return [self initWithDelegate:scanDelegate showCancel:shouldShowCancel OneDMode:shouldUseoOneDMode showLicense:NO withPrompt:@""];
+    return [self initWithDelegate:scanDelegate oneDMode:shouldUseoOneDMode showLicense:NO withPrompt:@""];
 }
 
-- (id)initWithDelegate:(id<ZXingDelegate>)scanDelegate showCancel:(BOOL)shouldShowCancel OneDMode:(BOOL)shouldUseoOneDMode showLicense:(BOOL)shouldShowLicense withPrompt:(NSString *)p
+- (id)initWithDelegate:(id<ZXingDelegate>)scanDelegate oneDMode:(BOOL)shouldUseoOneDMode showLicense:(BOOL)shouldShowLicense withPrompt:(NSString *)p
 {
     self = [super init];
     if (self) {
         [self setDelegate:scanDelegate];
         self.oneDMode = shouldUseoOneDMode;
-        self.showCancel = shouldShowCancel;
         self.showLicense = shouldShowLicense;
         self.wantsFullScreenLayout = YES;
         beepSound = -1;
         decoding = NO;
-        OverlayView *theOverLayView = [[OverlayView alloc] initWithFrame:[UIScreen mainScreen].bounds 
-                                                           cancelEnabled:showCancel 
+        self.overlayView = [[OverlayView alloc] initWithFrame:[UIScreen mainScreen].bounds 
                                                                 oneDMode:oneDMode
                                                              showLicense:shouldShowLicense
                                                               withPrompt:p];
-        [theOverLayView setDelegate:self];
-        self.overlayView = theOverLayView;
-        [theOverLayView release];
+        [self.overlayView setDelegate:self];
         lastDecodeTime=[[NSDate date]retain];  
     }
     
@@ -149,6 +145,15 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(10,30,19,19);
+    [backButton setImage:[UIImage imageNamed:@"arrowBack"] forState:UIControlStateNormal];
+    backButton.accessibilityLabel = @"Back Button";
+    [backButton addTarget:self action:@selector(cancelled) forControlEvents:UIControlEventTouchUpInside];
+    //oh god hack
+    [self.overlayView addSubview:backButton];
+    
     self.isStatusBarHidden = [[UIApplication sharedApplication] isStatusBarHidden];
     if (!isStatusBarHidden)
         [[UIApplication sharedApplication] setStatusBarHidden:YES];

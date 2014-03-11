@@ -34,9 +34,9 @@
 @property (nonatomic, copy) NSString *displayedMessage;
 @property (nonatomic, retain) UIImageView *fadedQR;
 
-- (id) initWithFrame:(CGRect)theFrame cancelEnabled:(BOOL)isCancelEnabled oneDMode:(BOOL)isOneDModeEnabled showLicense:(BOOL)showLicenseButton withPrompt:(NSString *)p;
-- (id) initWithFrame:(CGRect)theFrame cancelEnabled:(BOOL)isCancelEnabled oneDMode:(BOOL)isOneDModeEnabled showLicense:(BOOL)shouldShowLicense;
-- (id) initWithFrame:(CGRect)theFrame cancelEnabled:(BOOL)isCancelEnabled oneDMode:(BOOL)isOneDModeEnabled;
+- (id) initWithFrame:(CGRect)theFrame oneDMode:(BOOL)isOneDModeEnabled showLicense:(BOOL)showLicenseButton withPrompt:(NSString *)p;
+- (id) initWithFrame:(CGRect)theFrame oneDMode:(BOOL)isOneDModeEnabled showLicense:(BOOL)shouldShowLicense;
+- (id) initWithFrame:(CGRect)theFrame oneDMode:(BOOL)isOneDModeEnabled;
 
 - (void)setPoint:(CGPoint)point;
 

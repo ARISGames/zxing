@@ -31,15 +31,15 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (id) initWithFrame:(CGRect)theFrame cancelEnabled:(BOOL)isCancelEnabled oneDMode:(BOOL)isOneDModeEnabled {
-    return [self initWithFrame:theFrame cancelEnabled:isCancelEnabled oneDMode:isOneDModeEnabled showLicense:NO];
+- (id) initWithFrame:(CGRect)theFrame oneDMode:(BOOL)isOneDModeEnabled {
+    return [self initWithFrame:theFrame oneDMode:isOneDModeEnabled showLicense:YES];
 }
 
-- (id) initWithFrame:(CGRect)theFrame cancelEnabled:(BOOL)isCancelEnabled oneDMode:(BOOL)isOneDModeEnabled showLicense:(BOOL)showLicenseButton {
-    return [self initWithFrame:theFrame cancelEnabled:isCancelEnabled oneDMode:isOneDModeEnabled showLicense:NO withPrompt:@""];
+- (id) initWithFrame:(CGRect)theFrame oneDMode:(BOOL)isOneDModeEnabled showLicense:(BOOL)showLicenseButton {
+    return [self initWithFrame:theFrame oneDMode:isOneDModeEnabled showLicense:YES withPrompt:@""];
 }
 
-- (id) initWithFrame:(CGRect)theFrame cancelEnabled:(BOOL)isCancelEnabled oneDMode:(BOOL)isOneDModeEnabled showLicense:(BOOL)showLicenseButton withPrompt:(NSString *)p
+- (id) initWithFrame:(CGRect)theFrame oneDMode:(BOOL)isOneDModeEnabled showLicense:(BOOL)showLicenseButton withPrompt:(NSString *)p
 {
     if(self = [super initWithFrame:theFrame])
     {
