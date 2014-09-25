@@ -104,6 +104,7 @@
 // lenient here since this class is only intended to encapsulate what's in a
 // barcode, not "judge" it.
 + (BOOL)isBasicallyValidEmailAddress:(NSString *)address {
+    /*
     NSRange atRange = [address rangeOfString:@"@"];
     if (atRange.location == NSNotFound) {
         return NO;
@@ -124,6 +125,9 @@
         return NO;
     }
     return YES;
+     */
+
+    return NO;
 }
 
 @end
